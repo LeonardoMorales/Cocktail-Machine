@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/drinkSelectorFragment">
+
+    <fragment
+        android:id="@+id/drinkSelectorFragment"
+        android:name="com.leonardo.drinkslab.ui.main.DrinkSelector.DrinkSelectorFragment"
+        android:label="fragment_drink_selector"
+        tools:layout="@layout/fragment_drink_selector" >
+
+        <action
+            android:id="@+id/action_drinkSelectorFragment_to_drinkDetailsFragment"
+            app:destination="@id/drinkDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_drinkSelectorFragment_to_ownDrink"
+            app:destination="@id/ownDrink"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/drinkDetailsFragment"
+        android:name="com.leonardo.drinkslab.ui.main.DrinkDetails.DrinkDetailsFragment"
+        android:label="fragment_drink_details"
+        tools:layout="@layout/fragment_drink_details" >
+
+        <argument
+            android:name="drink"
+            app:argType="com.leonardo.drinkslab.data.model.Drink" />
+
+        <argument
+            android:name="idDocument"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_drinkDetailsFragment_to_drinkSelectorFragment"
+            app:destination="@id/drinkSelectorFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ownDrink"
+        android:name="com.leonardo.drinkslab.ui.main.OwnDrink.OwnDrink"
+        android:label="fragment_own_drink"
+        tools:layout="@layout/fragment_own_drink" />
+
+</navigation>
