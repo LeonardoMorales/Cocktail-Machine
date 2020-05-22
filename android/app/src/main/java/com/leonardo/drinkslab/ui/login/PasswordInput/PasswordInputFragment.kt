@@ -9,29 +9,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.afollestad.materialdialogs.MaterialDialog
 import com.leonardo.drinkslab.R
+import com.leonardo.drinkslab.ui.kodeinViewModel
 import com.leonardo.drinkslab.util.startHomeActivity
 import kotlinx.android.synthetic.main.fragment_password_input.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 
 class PasswordInputFragment : Fragment(), KodeinAware {
 
     private val TAG: String = "AppDebug"
 
     override val kodein by kodein()
-    private val factory: PasswordInputViewModelFactory by instance()
+    private val viewModel: PasswordInputViewModel by kodeinViewModel()
 
     private lateinit var sharedPreference: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-
-    private val viewModel by lazy {
-        ViewModelProvider(activity!!, factory).get(PasswordInputViewModel::class.java)
-    }
 
     private val args: PasswordInputFragmentArgs by navArgs()
     private lateinit var idMachine: String

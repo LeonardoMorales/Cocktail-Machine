@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_exit"
-        android:title="Salir"
+        android:title="Exit"
         android:icon="@drawable/ic_exit_to_app"
         app:showAsAction="never"/>
 </menu>

@@ -1,5 +1,6 @@
 package com.leonardo.drinkslab.domain
 
+import com.leonardo.drinkslab.data.model.Drink
 import com.leonardo.drinkslab.data.repositories.IRepository
 import com.leonardo.drinkslab.util.vo.Resource
 import kotlinx.coroutines.flow.Flow
@@ -12,4 +13,5 @@ class UseCaseImpl(
 
     override suspend fun getMachineState(idDocument: String): Flow<Resource<Boolean>> = iRepository.getMachineState(idDocument)
 
+    override suspend fun getDrinksList(idDocument: String): Flow<Resource<MutableList<Drink>>> = iRepository.getDrinksList(idDocument)
 }

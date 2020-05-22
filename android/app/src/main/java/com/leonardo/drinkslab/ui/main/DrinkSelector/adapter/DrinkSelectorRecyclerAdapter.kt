@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.leonardo.drinkslab.R
 import com.leonardo.drinkslab.data.model.Drink
 import kotlinx.android.synthetic.main.layout_banner_item.view.*
@@ -38,7 +39,11 @@ class DrinkSelectorRecyclerAdapter(val interaction: Interaction? = null) : ListA
 
             tvDrinkName.text = drink.name
 
+            val requestOption = RequestOptions()
+                .error(R.drawable.own_drink)
+
             Glide.with(itemView.context)
+                .setDefaultRequestOptions(requestOption)
                 .load(drink.image)
                 .into(ivDrinkImage)
         }

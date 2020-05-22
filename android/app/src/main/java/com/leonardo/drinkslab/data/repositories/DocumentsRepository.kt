@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.leonardo.drinkslab.data.firebase.FirebaseSource
 import com.leonardo.drinkslab.data.model.Drink
+import com.leonardo.drinkslab.data.model.Ingredient
 import com.leonardo.drinkslab.util.vo.Resource
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Deferred
@@ -72,8 +73,11 @@ class DocumentsRepository(
 
     fun getDrinksList(idDocument: String): LiveData<MutableList<Drink>> = firebase.getDrinksList(idDocument)
 
+    fun getIngredientsList(idDocument: String): LiveData<MutableList<Ingredient>> = firebase.getIngredentsList(idDocument)
+
     fun updateProcess(idDocument: String, process: MutableList<HashMap<String, Long>>) = firebase.updateProcessRealTimeDB(idDocument, process)
 
     fun updateMachineOnlineStatus(idDocument: String) = firebase.updateMachineOnlineStatusRealTimeDB(idDocument)
 
+    fun addDrink(idDocument: String, drink: Drink) = firebase.addDrink(idDocument, drink)
 }

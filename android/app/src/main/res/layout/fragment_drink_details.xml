@@ -54,7 +54,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        android:text="Preparar Bebida"
+        android:text="@string/make_drink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -65,8 +65,8 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btn_make_drink"
-        app:layout_constraintEnd_toEndOf="@+id/btn_make_drink"
-        app:layout_constraintStart_toStartOf="@+id/btn_make_drink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_make_drink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

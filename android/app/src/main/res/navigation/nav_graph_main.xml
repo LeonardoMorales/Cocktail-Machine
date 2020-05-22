@@ -19,14 +19,6 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
 
-        <action
-            android:id="@+id/action_drinkSelectorFragment_to_ownDrink"
-            app:destination="@id/ownDrink"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
-
     </fragment>
 
     <fragment
@@ -48,11 +40,5 @@
             app:destination="@id/drinkSelectorFragment" />
 
     </fragment>
-
-    <fragment
-        android:id="@+id/ownDrink"
-        android:name="com.leonardo.drinkslab.ui.main.OwnDrink.OwnDrink"
-        android:label="fragment_own_drink"
-        tools:layout="@layout/fragment_own_drink" />
 
 </navigation>

@@ -41,18 +41,11 @@ class DrinkDetailsFragment : Fragment(), MachineListener {
 
     private val TAG: String = "AppDebug"
 
-    //override val kodein by closestKodein()
-
     private val args: DrinkDetailsFragmentArgs by navArgs()
     private lateinit var drink: Drink
 
     private lateinit var factory: DrinkDetailViewModelFactory
     private lateinit var viewModel: DrinkDetailViewModel
-    //private val viewmodelFactory: DrinkDetailViewModelFactory by instance()
-
-    /*private val viewModel by lazy {
-        ViewModelProvider(activity!!, viewmodelFactory).get(DrinkDetailViewModel::class.java)
-    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

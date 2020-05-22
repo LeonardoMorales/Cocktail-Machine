@@ -7,9 +7,16 @@
     <string name="text_success">Success</string>
     <string name="text_ok">OK</string>
     <string name="text_cancel">Cancel</string>
-    <string name="error_qr_scan">Error al escanear QR</string>
-    <string name="invalid_password">Contraseña Inválida</string>
+    <string name="error_qr_scan">Error Scanning QR Code</string>
+    <string name="invalid_password">Incorrect Password</string>
     <string name="key_id_machine">key_id_machine</string>
     <string name="key_password_machine">key_password_machine</string>
-    <string name="ingredientes">Ingredientes:</string>
+    <string name="ingredientes">Ingredients:</string>
+    <string name="create_drink">CREATE DRINK</string>
+    <string name="add">Add</string>
+    <string name="make_drink">MAKE DRINK</string>
+    <string name="password">Password</string>
+    <string name="next">NEXT</string>
+    <string name="equipo_delta">Equipo Delta</string>
+    <string name="drinks_lab">DRINKS LAB</string>
 </resources>

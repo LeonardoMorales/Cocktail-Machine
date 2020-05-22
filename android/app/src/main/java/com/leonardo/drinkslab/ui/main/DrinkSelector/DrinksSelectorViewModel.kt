@@ -9,6 +9,7 @@ import com.leonardo.drinkslab.R
 import com.leonardo.drinkslab.data.model.Drink
 import com.leonardo.drinkslab.data.repositories.DocumentsRepository
 import com.leonardo.drinkslab.domain.IUseCase
+import com.leonardo.drinkslab.util.Constants
 import com.leonardo.drinkslab.util.vo.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -24,12 +25,14 @@ class DrinksSelectorViewModel(
 
     var sharedPreference: SharedPreferences
     var idMachine: String? = ""
+    var lastDrinksWasAdded: Boolean = false
 
     private val context = getApplication<Application>().applicationContext
 
     init {
         sharedPreference = context.getSharedPreferences("com.leonardo.drinkslab", Context.MODE_PRIVATE)
         idMachine = sharedPreference.getString(context.getString(R.string.key_id_machine), "")
+        idMachine = Constants.MACHINE_ID_TEST
 
         updateMachineOnlineStatus(idMachine!!)
     }
@@ -39,6 +42,18 @@ class DrinksSelectorViewModel(
 
         try {
             useCase.getVersionCode().collect {
+                emit(it)
+            }
+        } catch(e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
+    val fetchDrinksList2 = liveData(Dispatchers.IO){
+        emit(value = Resource.Loading())
+
+        try {
+            useCase.getDrinksList(idMachine!!).collect {
                 emit(it)
             }
         } catch(e: Exception) {
