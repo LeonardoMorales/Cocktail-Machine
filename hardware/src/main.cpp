@@ -8,8 +8,8 @@
 /* ----------------------------------
         WIFI CREDENTIALS
 -------------------------------------*/
-#define WIFI_SSID "XXXXXXXXX"
-#define WIFI_PASSWORD "XXXXXXXXXXXX"
+#define WIFI_SSID "IZZI-1B75"
+#define WIFI_PASSWORD "D4AB82FC1B75"
 
 // Retry Wifi Connection Vars
 int count = 0;
@@ -18,8 +18,8 @@ int count2 = 0;
 /* ----------------------------------
         FIREBASE
 ------------------------------------*/
-#define FIREBASE_HOST "XXXXXXXXXXXXX.firebaseio.com" //Do not include https:// in FIREBASE_HOST
-#define FIREBASE_AUTH "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+#define FIREBASE_HOST "chat-app-8812e.firebaseio.com" //Do not include https:// in FIREBASE_HOST
+#define FIREBASE_AUTH "6Os7dMCP9glr5o7kh1prYIC7RlBuk6FcFVQL1Afe"
 
 FirebaseData firebaseDataRecive;
 FirebaseData firebaseDataSend;
@@ -134,11 +134,14 @@ void streamCallback(MultiPathStreamData stream)
       Serial.println("path: " + stream.dataPath + ", type: " + stream.type + ", value: " + stream.value);
       if (stream.dataPath == "/isOnline")
       {
+        Serial.println("1");
         if (firebaseDataRecive.dataType() == "int")
         {
+          Serial.println("2");
           if (firebaseDataRecive.intData() == 0)
           {
             // Actualizar campo isOnline a true en Firebase para comprobar que si esté conectado a internet
+            Serial.println("3");
             Serial.println("UPDATING ONLINE STATUS...");
             updateOnlineStatus();
           }
@@ -146,13 +149,17 @@ void streamCallback(MultiPathStreamData stream)
       }
       if (stream.dataPath == "/isWorking")
       {
+        Serial.println("4");
         if (firebaseDataRecive.dataType() == "int")
         {
+          Serial.println("5");
           if (firebaseDataRecive.intData() == 1)
           {
+            Serial.println("6");
             //Obtener arreglo de currenProcess en Firestore y recorrerlo para mover maquina
             if (Firebase.get(firebaseDataRecive, parentPath + "/currentProcess"))
             {
+              Serial.println("7");
               moveMachine(firebaseDataRecive);
             }
             else
@@ -210,6 +217,11 @@ void setup()
       Serial.print("Retrying connection...");
       delay(5000);
     }
+    /*if (count2 == 12)
+    {
+      connection_status = 0;
+      return 0;
+    }*/
     count++;
     count2++;
   }
@@ -354,7 +366,7 @@ void desplazarBanda(int pisoNuevo)
 
 void subirPlataforma(int cantidad)
 {
-  int altura = 10; // CANTIDAD DE CENTIMETROS QUE SE QUIERE SUBIR LA PLATAFORMA (CAMBIAR DE ACUERDO A DISEÑO DE MÁQUINA)
+  int altura = 4; // CANTIDAD DE CENTIMETROS QUE SE QUIERE SUBIR LA PLATAFORMA (CAMBIAR DE ACUERDO A DISEÑO DE MÁQUINA)
 
   digitalWrite(SLEEP_2, HIGH);
 
@@ -373,7 +385,7 @@ void subirPlataforma(int cantidad)
     }
 
     digitalWrite(SLEEP_2, LOW);
-    delay(2000); //Un delay de 3 segundos para permitir que el liquido salga por completo del recipiente
+    delay(2500); //Un delay de 3 segundos para permitir que el liquido salga por completo del recipiente
     digitalWrite(SLEEP_2, HIGH);
 
     /*Serial.print("Baja ");
@@ -388,7 +400,7 @@ void subirPlataforma(int cantidad)
       delay(4);
     }
     digitalWrite(SLEEP_2, LOW);
-    delay(1000); //Un delay de 1 segundos para permitir que el recipiente se vuelva a llenar
+    delay(500); //Un delay de 1 segundos para permitir que el recipiente se vuelva a llenar
     digitalWrite(SLEEP_2, HIGH);
   }
 
@@ -400,7 +412,7 @@ void sendInitialMachineStateToFirebase()
   if (WiFi.status() == WL_CONNECTED)
   {
     HTTPClient http;
-    http.begin("https://XXXXXXXXXXXXX.firebaseapp.com/api/v1/isWorking/EDhmj2wGMXYpKQkdzlVn");
+    http.begin("https://chat-app-8812e.firebaseapp.com/api/v1/isWorking/EDhmj2wGMXYpKQkdzlVn");
     http.addHeader("Content-Type", "application/json");
 
     StaticJsonDocument<20> tempDocument;
@@ -422,7 +434,7 @@ void sendFinalMachineStateToFirebase()
   if (WiFi.status() == WL_CONNECTED)
   {
     HTTPClient http;
-    http.begin("https://XXXXXXXXXXXXXX.firebaseapp.com/api/v1/isWorking/EDhmj2wGMXYpKQkdzlVn");
+    http.begin("https://chat-app-8812e.firebaseapp.com/api/v1/isWorking/EDhmj2wGMXYpKQkdzlVn");
     http.addHeader("Content-Type", "application/json");
 
     StaticJsonDocument<20> tempDocument;
